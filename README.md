@@ -29,7 +29,7 @@ Hi, I am Nadim Mahmud Nion. I have recently concluded my graduation from the dep
 - MongoDB Compass
 - NoSQLBooster
 - Node.js
-- MongoDB Atlas & Compass
+- MongoDB Atlas
 - JWT
 - Stripe
 - Vite
