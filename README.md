@@ -9,6 +9,14 @@ This is a backend focused project. Users can add, update, delete and read their 
 - MongoDB with Mongoose
 - Express.js
 
+## Project Resources: 
+
+- 🔗 **Live Deployment (Server) Link:** [Your Live Link Here](https://your-server-link.com)
+- 🔐 **Admin Login Credentials:**
+  - Username: `admin`
+  - Password: `your-password`
+- 🎥 **Project Overview Video:** [Watch Here](https://your-video-link.com)
+
 ## About Me
 
 Hi, I am Nadim Mahmud Nion. I have recently concluded my graduation from the department of Computer Science and Engineering (CSE) at the Daffodil International University (DIU). I have been learning MERN Stack Web Development since 2022. I am expertise in the following skills:
