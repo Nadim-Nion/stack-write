@@ -9,7 +9,7 @@ This is a backend focused project. Users can add, update, delete and read their 
 - MongoDB with Mongoose
 - Express.js
 
-## Project Resources: 
+## Project Resources:
 
 - 🔗 **Live Deployment (Server) Link:** [Your Live Link Here](https://your-server-link.com)
 - 🔐 **Admin Login Credentials:**
@@ -29,7 +29,7 @@ Hi, I am Nadim Mahmud Nion. I have recently concluded my graduation from the dep
 - MongoDB Compass
 - NoSQLBooster
 - Node.js
-- MongoDB Atlas
+- MongoDB Atlas & Compass
 - JWT
 - Stripe
 - Vite
