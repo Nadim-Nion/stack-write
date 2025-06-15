@@ -8,7 +8,9 @@ async function main() {
     await mongoose.connect(config.database_url as string);
 
     app.listen(config.port, () => {
-      console.log(`Stack Write Application is running on ${config.port} 😊`);
+      console.log(
+        `Stack Write Application is running on PORT: ${config.port} 😊`,
+      );
     });
   } catch (err) {
     console.log(err);
