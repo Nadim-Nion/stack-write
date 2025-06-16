@@ -17,6 +17,14 @@ This is a backend focused project. Users can add, update, delete and read their 
   - Password: `your-password`
 - 🎥 **Project Overview Video:** [Watch Here](https://your-video-link.com)
 
+## 📊 Entity Relationship Diagram (ERD)
+
+The following diagram illustrates the database structure, including entities like `User`, `Role`, and `Blog`, along with their relationships.
+
+![ER Diagram](https://raw.githubusercontent.com/Nadim-Nion/stack-write/5755f7990ed9c465c597497a38868e7ce9b1518f/stack-write.PNG)
+
+👉 [Click here](https://lucid.app/lucidchart/9a860857-ee4f-447d-b7e9-7097fe6fef28/edit?viewport_loc=-146%2C14%2C2324%2C1079%2C0_0&invitationId=inv_e57d3a48-b76c-482b-9773-704745ad3b54) to view the full diagram on Lucid Chart.
+
 ## About Me
 
 Hi, I am Nadim Mahmud Nion. I have recently concluded my graduation from the department of Computer Science and Engineering (CSE) at the Daffodil International University (DIU). I have been learning MERN Stack Web Development since 2022. I am expertise in the following skills:
