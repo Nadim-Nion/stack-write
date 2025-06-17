@@ -13,8 +13,8 @@ This is a backend focused project. Users can add, update, delete and read their 
 
 - 🔗 **Live Deployment (Server) Link:** [Your Live Link Here](https://your-server-link.com)
 - 🔐 **Admin Login Credentials:**
-  - Username: `admin`
-  - Password: `your-password`
+  - email: `admin@stack-write.com`
+  - Password: `admin@123`
 - 🎥 **Project Overview Video:** [Watch Here](https://your-video-link.com)
 
 ## 📊 Entity Relationship Diagram (ERD)
