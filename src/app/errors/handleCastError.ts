@@ -1,17 +1,14 @@
 import mongoose from 'mongoose';
 import { TError, TGenericErrorResponse } from '../interface/error';
 
-const handleValidationError = (
-  err: mongoose.Error.ValidationError,
+const handleCastError = (
+  err: mongoose.Error.CastError,
 ): TGenericErrorResponse => {
   // formatting the error in consistent pattern
-  const errorObj: mongoose.Error.ValidatorError | mongoose.Error.CastError =
-    err.errors.name;
-
   const error: TError = {
     details: {
-      path: errorObj?.path,
-      message: errorObj?.message,
+      path: err?.path,
+      message: err?.message,
     },
   };
 
@@ -24,4 +21,4 @@ const handleValidationError = (
   };
 };
 
-export default handleValidationError;
+export default handleCastError;

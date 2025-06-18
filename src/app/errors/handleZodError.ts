@@ -1,7 +1,7 @@
 import { ZodError, ZodIssue } from 'zod';
-import { TError } from '../interface/error';
+import { TError, TGenericErrorResponse } from '../interface/error';
 
-const handleZodError = (err: ZodError) => {
+const handleZodError = (err: ZodError): TGenericErrorResponse => {
   // formatting the error in consistent pattern
   const firstIssue: ZodIssue = err.issues[0];
 
