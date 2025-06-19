@@ -13,6 +13,19 @@ const createUserValidationSchema = z.object({
   }),
 });
 
+const userLoginValidationSchema = z.object({
+  body: z.object({
+    email: z
+      .string({ required_error: 'Email is required' })
+      .email({ message: 'Invalid Email format' }),
+    password: z
+      .string({ required_error: 'Password is required' })
+      .min(5, { message: 'Password can not be lower than 5 characters' })
+      .max(30, { message: 'Password can not be greater than 30 character' }),
+  }),
+});
+
 export const UserValidations = {
   createUserValidationSchema,
+  userLoginValidationSchema,
 };
