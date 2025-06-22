@@ -2,6 +2,8 @@ import status from 'http-status';
 import AppError from '../../errors/AppError';
 import { TUser, TUserLogin } from './user.interface';
 import { User } from './user.model';
+import jwt from 'jsonwebtoken';
+import config from '../../config';
 
 const createUserIntoDB = async (payload: TUser) => {
   const result = await User.create(payload);
@@ -18,7 +20,7 @@ const createUserIntoDB = async (payload: TUser) => {
 const userLogin = async (payload: TUserLogin) => {
   // Check the user is exists ot not
   const user = await User.isUserExistsByEmail(payload?.email);
-  console.log('user:', user);
+  // console.log('user:', user);
   if (!user) {
     throw new AppError(status.UNAUTHORIZED, 'Invalid Credentials');
   }
@@ -37,7 +39,21 @@ const userLogin = async (payload: TUserLogin) => {
     throw new AppError(status.UNAUTHORIZED, 'Invalid Credentials');
   }
 
-  return user;
+  // Generates Access Token after login
+  const jwtPayload = {
+    email: user?.email,
+    role: user?.role,
+  };
+
+  const token = jwt.sign(
+    jwtPayload,
+    config.jwt_access_secret as string,
+    {
+      expiresIn: config.jwt_access_expires_in,
+    } as jwt.SignOptions,
+  );
+
+  return { token };
 };
 
 export const UserServices = {
