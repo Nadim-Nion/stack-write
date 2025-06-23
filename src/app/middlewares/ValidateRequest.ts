@@ -7,6 +7,7 @@ const ValidateRequest = (schema: AnyZodObject) => {
     // Validate data before going to the controller
     await schema.parseAsync({
       body: req.body,
+      cookies: req.cookies,
     });
     next();
   });

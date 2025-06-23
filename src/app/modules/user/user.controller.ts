@@ -36,7 +36,20 @@ const userLogin = catchAsync(async (req, res) => {
   });
 });
 
+const refreshToken = catchAsync(async (req, res) => {
+  const { refreshToken } = req.cookies;
+  const result = await UserServices.refreshToken(refreshToken);
+
+  sendResponse(res, {
+    success: true,
+    message: 'Access token is generated successfully',
+    statusCode: status.OK,
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createUser,
   userLogin,
+  refreshToken,
 };
