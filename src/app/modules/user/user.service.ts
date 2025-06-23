@@ -2,8 +2,8 @@ import status from 'http-status';
 import AppError from '../../errors/AppError';
 import { TUser, TUserLogin } from './user.interface';
 import { User } from './user.model';
-import jwt from 'jsonwebtoken';
 import config from '../../config';
+import createToken from './user.utils';
 
 const createUserIntoDB = async (payload: TUser) => {
   const result = await User.create(payload);
@@ -45,15 +45,19 @@ const userLogin = async (payload: TUserLogin) => {
     role: user?.role,
   };
 
-  const token = jwt.sign(
+  const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
-    {
-      expiresIn: config.jwt_access_expires_in,
-    } as jwt.SignOptions,
+    config.jwt_access_expires_in as string,
   );
 
-  return { token };
+  const refreshToken = createToken(
+    jwtPayload,
+    config.jwt_refresh_secret as string,
+    config.jwt_refresh_expires_in as string,
+  );
+
+  return { accessToken, refreshToken };
 };
 
 export const UserServices = {
