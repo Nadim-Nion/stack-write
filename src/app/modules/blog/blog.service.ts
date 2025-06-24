@@ -58,7 +58,6 @@ const updateBlogIntoDB = async (
 
   const { _id: blogId, title, content, author } = populatedBlog;
 
-
   return {
     _id: blogId,
     title,
@@ -67,7 +66,29 @@ const updateBlogIntoDB = async (
   };
 };
 
+const deleteBlogFromDB = async (userId: string, blogId: string) => {
+  // Check the user is exits or not
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new AppError(status.NOT_FOUND, 'Author is not found');
+  }
+
+  // Check the blog is exits or not and belongs to the user
+  const blog = await Blog.findOne({ _id: blogId, author: userId });
+  if (!blog) {
+    throw new AppError(status.NOT_FOUND, 'Blog is not found');
+  }
+
+  const result = await Blog.findByIdAndDelete(blogId);
+
+  // If the document is not found for deletion
+  if (!result) {
+    throw new AppError(status.NOT_FOUND, 'Failed to delete blog');
+  }
+};
+
 export const BlogServices = {
   createBlogIntoDB,
   updateBlogIntoDB,
+  deleteBlogFromDB,
 };
