@@ -5,6 +5,7 @@ import { User } from './user.model';
 import config from '../../config';
 import createToken from './user.utils';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { Types } from 'mongoose';
 
 const createUserIntoDB = async (payload: TUser) => {
   const result = await User.create(payload);
@@ -42,7 +43,7 @@ const userLogin = async (payload: TUserLogin) => {
 
   // Generates Access Token after login
   const jwtPayload = {
-    email: user?.email,
+    id: user?._id as Types.ObjectId,
     role: user?.role,
   };
 
@@ -93,8 +94,9 @@ const refreshToken = async (token: string) => {
   }
 
   // Generates Access Token after hitting /refresh-token endpoint
+
   const jwtPayload = {
-    email: user?.email,
+    id: user?._id as Types.ObjectId,
     role: user?.role,
   };
 
