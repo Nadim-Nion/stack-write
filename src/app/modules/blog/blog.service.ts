@@ -26,6 +26,48 @@ const createBlogIntoDB = async (payload: TBlog, id: string) => {
   };
 };
 
+const updateBlogIntoDB = async (
+  payload: Partial<TBlog>,
+  id: string,
+  _id: string,
+) => {
+  // Check the user is exits or not
+  const user = await User.findById(id);
+  if (!user) {
+    throw new AppError(status.NOT_FOUND, 'Author is not found');
+  }
+
+  // Check the blog is exits or not and belongs to the user
+  const blog = await Blog.findOne({ _id, author: id });
+  if (!blog) {
+    throw new AppError(status.NOT_FOUND, 'Blog is not found');
+  }
+
+  const result = await Blog.findByIdAndUpdate(_id, payload, {
+    new: true,
+    runValidators: true,
+  });
+
+  // null check here
+  if (!result) {
+    throw new AppError(status.NOT_FOUND, 'Blog not found after update');
+  }
+
+  // populate author after creating
+  const populatedBlog = await result.populate('author');
+
+  const { _id: blogId, title, content, author } = populatedBlog;
+
+
+  return {
+    _id: blogId,
+    title,
+    content,
+    author,
+  };
+};
+
 export const BlogServices = {
   createBlogIntoDB,
+  updateBlogIntoDB,
 };

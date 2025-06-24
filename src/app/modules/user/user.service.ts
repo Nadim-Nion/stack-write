@@ -95,6 +95,7 @@ const refreshToken = async (token: string) => {
   // Generates Access Token after hitting /refresh-token endpoint
   const jwtPayload = {
     id: user?._id as Types.ObjectId,
+    email: user?.email,
     role: user?.role,
   };
 
