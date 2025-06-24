@@ -12,7 +12,11 @@ const createBlogIntoDB = async (payload: TBlog, id: string) => {
   }
 
   const result = await Blog.create({ ...payload, author: id });
-  const { _id, title, content, author } = result;
+
+  // populate author after creating
+  const populatedBlog = await result.populate('author');
+
+  const { _id, title, content, author } = populatedBlog;
 
   return {
     _id,
