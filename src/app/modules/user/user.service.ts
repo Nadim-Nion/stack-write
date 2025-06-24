@@ -44,6 +44,7 @@ const userLogin = async (payload: TUserLogin) => {
   // Generates Access Token after login
   const jwtPayload = {
     id: user?._id as Types.ObjectId,
+    email: user?.email,
     role: user?.role,
   };
 
@@ -78,10 +79,8 @@ const refreshToken = async (token: string) => {
   ) as JwtPayload;
   // console.log("decoded:", decoded);
 
-  // Check the user role from the decoded token exits in the required roles
-  const { email } = decoded;
-
   // Check the user is exists ot not
+  const { email } = decoded;
   const user = await User.isUserExistsByEmail(email);
   // console.log('user:', user);
   if (!user) {
@@ -94,7 +93,6 @@ const refreshToken = async (token: string) => {
   }
 
   // Generates Access Token after hitting /refresh-token endpoint
-
   const jwtPayload = {
     id: user?._id as Types.ObjectId,
     role: user?.role,
