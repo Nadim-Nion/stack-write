@@ -283,8 +283,6 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 
 ---
 
----
-
 ## Contribution
 
 Feel free to fork the project and submit PRs. For major changes, please open an issue first to discuss.
