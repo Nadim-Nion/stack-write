@@ -191,17 +191,17 @@ Your `package.json` should include:
 Make sure to include the following in your `.env` file:
 
 ```plaintext
-NODE_ENV=development
-PORT=5000
+NODE_ENV=<your-environment> # e.g., development, production
+PORT=<your-port-number>
 DATABASE_URL=<your-mongodb-uri>
 
-BCRYPT_SALT_ROUNDS=12
+BCRYPT_SALT_ROUNDS=<your-salt-rounds> # e.g., 10, 12, 14
 
 JWT_ACCESS_SECRET=<your-access-secret>
-JWT_ACCESS_EXPIRES_IN=1d
+JWT_ACCESS_EXPIRES_IN=<your-access-token-expiry> # e.g., 1d, 2h, 30m
 
 JWT_REFRESH_SECRET=<your-refresh-secret>
-JWT_REFRESH_EXPIRES_IN=365d
+JWT_REFRESH_EXPIRES_IN=<your-refresh-token-expiry> # e.g., 365d, 30d, 7d
 ```
 
 ### 📌 Generating a Secure JWT Access Secret
@@ -233,16 +233,17 @@ JWT_ACCESS_SECRET=your_generated_secret_here
 ### 📌 Example .env file (sample)
 
 ```plaintext
-NODE_ENV=development
-PORT=5000
-DATABASE_URL=mongodb+srv://your-username:your-password@cluster0.mongodb.net/blog-db
+NODE_ENV=<your-environment> # e.g., development, production
+PORT=<your-port-number>
+DATABASE_URL=<your-mongodb-uri>
 
-BCRYPT_SALT_ROUNDS=12
-JWT_ACCESS_SECRET=your-long-access-secret-key
-JWT_ACCESS_EXPIRES_IN=1d
+BCRYPT_SALT_ROUNDS=<your-salt-rounds> # e.g., 10, 12, 14
 
-JWT_REFRESH_SECRET=your-long-refresh-secret-key
-JWT_REFRESH_EXPIRES_IN=365d
+JWT_ACCESS_SECRET=<your-access-secret>
+JWT_ACCESS_EXPIRES_IN=<your-access-token-expiry> # e.g., 1d, 2h, 30m
+
+JWT_REFRESH_SECRET=<your-refresh-secret>
+JWT_REFRESH_EXPIRES_IN=<your-refresh-token-expiry> # e.g., 365d, 30d, 7d
 ```
 
 ---
