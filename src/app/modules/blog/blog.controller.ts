@@ -3,6 +3,17 @@ import { catchAsync } from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { BlogServices } from './blog.service';
 
+const getAllBlogs = catchAsync(async (req, res) => {
+  const result = await BlogServices.getAllBlogsFromDB(req.query);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'Blogs fetched successfully',
+    data: result,
+  });
+});
+
 const createBlog = catchAsync(async (req, res) => {
   const { id } = req.user;
 
@@ -45,6 +56,7 @@ const deleteBlog = catchAsync(async (req, res) => {
 });
 
 export const BlogControllers = {
+  getAllBlogs,
   createBlog,
   updateBlog,
   deleteBlog,

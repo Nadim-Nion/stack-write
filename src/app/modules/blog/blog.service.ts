@@ -4,6 +4,38 @@ import { User } from '../user/user.model';
 import { TBlog } from './blog.interface';
 import { Blog } from './blog.model';
 
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
+  /*
+  {title: {$regex: query?.search, $options: "i"}}
+  {content: {$regex: query?.search, $options: "i"}}
+  */
+
+  const blogSearchableFields = ['title', 'content'];
+
+  const searchConditions = query?.search
+    ? {
+        $or: blogSearchableFields.map((field) => ({
+          [field]: { $regex: query?.search, $options: 'i' },
+        })),
+      }
+    : {};
+
+  const filterCondition = query?.filter ? { author: query?.filter } : {};
+
+  const finalQuery = {
+    ...searchConditions,
+    ...filterCondition,
+  };
+
+  const sortBy = query?.sortBy || 'createdAt';
+  const sortOrder = query?.sortOrder === 'desc' ? -1 : 1;
+
+  const result = await Blog.find(finalQuery)
+    .populate('author')
+    .sort({ [sortBy as string]: sortOrder });
+  return result;
+};
+
 const createBlogIntoDB = async (payload: TBlog, id: string) => {
   // Check the user is exits or not
   const user = await User.findById(id);
@@ -40,7 +72,10 @@ const updateBlogIntoDB = async (
   // Check the blog is exits or not and belongs to the user
   const blog = await Blog.findOne({ _id, author: id });
   if (!blog) {
-    throw new AppError(status.NOT_FOUND, 'Blog is not found');
+    throw new AppError(
+      status.NOT_FOUND,
+      'Blog is not found or does not belong to the user',
+    );
   }
 
   const result = await Blog.findByIdAndUpdate(_id, payload, {
@@ -53,7 +88,7 @@ const updateBlogIntoDB = async (
     throw new AppError(status.NOT_FOUND, 'Blog not found after update');
   }
 
-  // populate author after creating
+  // populate author after updating
   const populatedBlog = await result.populate('author');
 
   const { _id: blogId, title, content, author } = populatedBlog;
@@ -88,6 +123,7 @@ const deleteBlogFromDB = async (userId: string, blogId: string) => {
 };
 
 export const BlogServices = {
+  getAllBlogsFromDB,
   createBlogIntoDB,
   updateBlogIntoDB,
   deleteBlogFromDB,
