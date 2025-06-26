@@ -213,7 +213,7 @@ To set up a secure JWT access secret, you'll need a strong 64-byte (512-bit) sec
 Run the following command in your node terminal. Run command `node` to enter the Node.js REPL, then paste the command below to generate a secure random string:
 
 ```bash
-require('crypto').randomBytes(64).toString('hex')"
+require('crypto').randomBytes(64).toString('hex')
 ```
 
 This will output a long hexadecimal string. Example output:
