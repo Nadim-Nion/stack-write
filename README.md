@@ -116,7 +116,7 @@ The following diagram illustrates the database structure, including entities lik
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/Nadim-Nion/stack-writed.git
+git clone https://github.com/Nadim-Nion/stack-write.git
 cd stack-write
 ```
 
