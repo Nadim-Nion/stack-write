@@ -3,6 +3,7 @@ import AppError from '../../errors/AppError';
 import { User } from '../user/user.model';
 import { TBlog } from './blog.interface';
 import { Blog } from './blog.model';
+import { blogSearchableFields } from './blog.constant';
 
 const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   /*
@@ -10,8 +11,7 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   {content: {$regex: query?.search, $options: "i"}}
   */
 
-  const blogSearchableFields = ['title', 'content'];
-
+  // Searching
   const searchConditions = query?.search
     ? {
         $or: blogSearchableFields.map((field) => ({
@@ -20,19 +20,24 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
       }
     : {};
 
+  // Filtering
   const filterCondition = query?.filter ? { author: query?.filter } : {};
 
+  // Merging search and filter conditions
   const finalQuery = {
     ...searchConditions,
     ...filterCondition,
   };
 
+  // Sorting
   const sortBy = query?.sortBy || 'createdAt';
   const sortOrder = query?.sortOrder === 'desc' ? -1 : 1;
 
   const result = await Blog.find(finalQuery)
     .populate('author')
-    .sort({ [sortBy as string]: sortOrder });
+    .sort({ [sortBy as string]: sortOrder })
+    .select('_id title content author');
+
   return result;
 };
 
