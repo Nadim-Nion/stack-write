@@ -16,6 +16,19 @@ const blockUser = catchAsync(async (req, res) => {
   });
 });
 
+const deleteBlog = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  await AdminService.deleteBlog(id);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'Blog deleted successfully',
+  });
+});
+
 export const AdminController = {
   blockUser,
+  deleteBlog,
 };
