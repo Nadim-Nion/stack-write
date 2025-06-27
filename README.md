@@ -6,7 +6,7 @@ A powerful and secure backend system for a blogging platform with role-based acc
 
 ## Project Resources:
 
-- 🔗 **Live Deployment (Server) Link:** [Vercel](stack-write.vercel.app)
+- 🔗 **Live Deployment (Server) Link:** [Vercel](https://stack-write.vercel.app/)
 - 🔐 **Admin Login Credentials:**
   - email: `admin@stack-write.com`
   - Password: `admin@123`
