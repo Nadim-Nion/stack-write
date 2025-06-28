@@ -10,7 +10,7 @@ A powerful and secure backend system for a blogging platform with role-based acc
 - 🔐 **Admin Login Credentials:**
   - email: `admin@stack-write.com`
   - Password: `admin@123`
-- 🎥 **Project Overview Video:** [Watch Here](https://your-video-link.com)
+- 🎥 **Project Overview Video:** [Watch Here](https://www.loom.com/share/36e574860e334575ae194e2401cc404c?sid=e9311398-974b-43a3-ab03-91a9e0205419)
 
 ---
 
